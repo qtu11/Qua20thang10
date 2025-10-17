@@ -526,6 +526,13 @@
             margin-top: 10px;
             font-family: 'Dancing Script', cursive; /* Giữ nguyên như ban đầu */
             position: initial;
+            /* Ngắt dòng an toàn khi văn bản dài và cho phép cuộn nội dung */
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            white-space: pre-wrap;
+            max-height: 55vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .fa-xmark {
@@ -581,6 +588,29 @@
             font-style: italic;
             text-align: right;
             z-index: 5;
+        }
+        /* Tối ưu cho điện thoại: giới hạn chiều cao modal và cho cuộn nội dung */
+        @media (max-width: 480px) {
+            .boxLetter .formLetter {
+                width: 92vw;
+                height: auto;
+                max-height: 80vh; /* Không vượt quá chiều cao màn hình */
+            }
+            .formLetter .wrapperLetter {
+                overflow: hidden; /* Ẩn tràn tổng thể, chỉ cho phần nội dung cuộn */
+            }
+            .giftbox { display: none; } /* Ẩn ảnh hộp quà trong modal để dành chỗ cho chữ */
+            .textLetter { padding: 6px 4px; }
+            .textLetter h2 { font-size: 24px; }
+            .textLetter .contentLetter {
+                font-size: 16px;
+                max-height: 58vh; /* Vùng cuộn nội dung */
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                padding: 0 12px;
+            }
+            .heartAnimation { position: static; width: 120px; margin: 8px auto 0; }
+            .signature { right: 12px; bottom: 8px; font-size: 16px; }
         }
     </style>
 </head>
