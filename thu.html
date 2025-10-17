@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Day</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap-grid.min.css"
+        integrity="sha512-JQksK36WdRekVrvdxNyV3B0Q1huqbTkIQNbz1dlcFVgNynEMRl0F8OSqOGdVppLUDIvsOejhr/W5L3G/b3J+8w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Thêm import font Great Vibes cho chữ ký -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 97vh;
+        }
+
+        .container svg {
+            width: 50%;
+            height: 50%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .body-letter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fae1dd;
+        }
+
+        .letter {
+            position: relative;
+            z-index: 1;
+        }
+
+        .valentines {
+            position: relative;
+            top: 50px;
+            cursor: pointer;
+            animation: up 3s linear infinite;
+        }
+
+        @keyframes up {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: #f08080;
+        }
+
+        .envelope:before {
+            background-color: #f08080;
+            content: "";
+            position: absolute;
+            width: 212px;
+            height: 212px;
+            transform: rotate(45deg);
+            top: -105px;
+            left: 44px;
+            border-radius: 30px 0 0 0;
+        }
+
+        .card {
+            position: absolute;
+            background-color: #eae2b7;
+            width: 270px;
+            height: 170px;
+            top: 5px;
+            left: 15px;
+            box-shadow: -5px -5px 100px rgba(0, 0, 0, 0.4);
+        }
+
+        .card:before {
+            content: "";
+            position: absolute;
+            border: 3px solid #003049;
+            border-style: dotted;
+            width: 240px;
+            height: 140px;
+            left: 12px;
+            top: 12px;
+        }
+
+        .text {
+            position: absolute;
+            font-family: 'Brush Script MT', cursive;
+            font-size: 30px;
+            text-align: center;
+            line-height: 25px;
+            top: 19px;
+            left: 85px;
+            color: #003049;
+        }
+
+        .heart {
+            background-color: #d62828;
+            display: inline-block;
+            height: 30px;
+            margin: 0 10px;
+            position: relative;
+            top: 110px;
+            left: 105px;
+            transform: rotate(-45deg);
+            width: 30px;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            background-color: #d62828;
+            border-radius: 50%;
+            height: 30px;
+            position: absolute;
+            width: 30px;
+        }
+
+        .heart:before {
+            top: -15px;
+            left: 0;
+        }
+
+        .heart:after {
+            left: 15px;
+            top: 0;
+        }
+
+        .hearts {
+            position: absolute;
+            top: 0;
+        }
+
+        .one, .two, .three, .four, .five {
+            background-color: red;
+            display: inline-block;
+            height: 10px;
+            margin: 0 10px;
+            position: relative;
+            transform: rotate(-45deg);
+            width: 10px;
+            top: 50px;
+        }
+
+        .one:before, .one:after,
+        .two:before, .two:after,
+        .three:before, .three:after,
+        .four:before, .four:after,
+        .five:before, .five:after {
+            content: "";
+            background-color: red;
+            border-radius: 50%;
+            height: 10px;
+            position: absolute;
+            width: 10px;
+        }
+
+        .one:before, .two:before, .three:before, .four:before, .five:before {
+            top: -5px;
+            left: 0;
+        }
+
+        .one:after, .two:after, .three:after, .four:after, .five:after {
+            left: 5px;
+            top: 0;
+        }
+
+        .one {
+            left: 10px;
+            animation: heart 1s ease-out infinite;
+        }
+
+        .two {
+            left: 30px;
+            animation: heart 2s ease-out infinite;
+        }
+
+        .three {
+            left: 50px;
+            animation: heart 1.5s ease-out infinite;
+        }
+
+        .four {
+            left: 70px;
+            animation: heart 2.3s ease-out infinite;
+        }
+
+        .five {
+            left: 90px;
+            animation: heart 1.7s ease-out infinite;
+        }
+
+        @keyframes heart {
+            0% {
+                transform: translateY(0) rotate(-45deg) scale(0.3);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-150px) rotate(-45deg) scale(1.3);
+                opacity: 0.5;
+            }
+        }
+
+        .front {
+            position: absolute;
+            border-right: 180px solid #f4978e;
+            border-top: 95px solid transparent;
+            border-bottom: 100px solid transparent;
+            left: 120px;
+            top: 5px;
+            width: 0;
+            height: 0;
+            z-index: 10;
+        }
+
+        .front:before {
+            position: absolute;
+            content: "";
+            border-left: 300px solid #f8ad9d;
+            border-top: 195px solid transparent;
+            left: -120px;
+            top: -95px;
+            width: 0;
+            height: 0;
+        }
+
+        .shadow {
+            position: absolute;
+            width: 330px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.3);
+            top: 265px;
+            left: -15px;
+            animation: scale 3s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes scale {
+            0%, 100% {
+                transform: scaleX(1);
+            }
+            50% {
+                transform: scaleX(0.85);
+            }
+        }
+
+        .hover-animation {
+            animation: hover 1.75s ease-in-out infinite;
+        }
+
+        #castle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fae1dd;
+        }
+
+        .dustDef {
+            position: absolute;
+            background-color: white;
+            border-radius: 100%;
+            box-shadow: 0 0 3px 1px white;
+            opacity: 0;
+        }
+
+        @keyframes hover {
+            0% {
+                margin-top: 60px;
+            }
+            50% {
+                margin-top: 50px;
+            }
+            100% {
+                margin-top: 60px;
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 25px 0 #e8b2ca;
+            }
+            50% {
+                box-shadow: 0 0 45px 0 #e8b2ca;
+            }
+            100% {
+                box-shadow: 0 0 25px 0 #e8b2ca;
+            }
+        }
+
+        @keyframes fall {
+            5% {
+                top: 209px;
+                left: 105px;
+                transform: rotate(55deg) scale(0.9, 0.95) skew(-18deg);
+                opacity: 0.9;
+            }
+            30% {
+                left: 90px;
+            }
+            55% {
+                left: 130px;
+            }
+            60%, 100% {
+                top: 380px;
+                transform: rotate(30deg) scale(0.9, 0.95) skew(-32deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes floatAnimate {
+            0% {
+                background-size: 105% 120%;
+                background-position: 0 0;
+                opacity: 0.7;
+            }
+            50% {
+                background-size: 100% 100%;
+                background-position: 0 0;
+                opacity: 0.5;
+            }
+            100% {
+                background-size: 105% 120%;
+                background-position: 0 0;
+                opacity: 0.7;
+            }
+        }
+
+        svg {
+            width: 80%;
+            display: block;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+        }
+
+        text {
+            fill: #e6668a;
+            font-family: consolas;
+            font-size: 9px;
+        }
+
+        p {
+            position: absolute;
+            z-index: 2;
+        }
+
+        label {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            opacity: .8;
+        }
+
+        .letters {
+            position: absolute;
+            width: 65px;
+            transition: 10s ease-in-out;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .letters img {
+            width: 100%;
+        }
+
+        .wrapperLetterForm {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+        }
+
+        .boxLetter {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .boxLetter .formLetter {
+            position: relative;
+            width: 600px;
+            height: 350px;
+            background-color: #FFEBEB;
+            border-radius: 20px;
+            z-index: 100;
+            padding: 20px 15px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        .formLetter .wrapperLetter {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed #FF6666;
+            border-radius: inherit;
+            display: flex;
+        }
+
+        .boxLetter .before {
+            position: absolute;
+            width: 600px;
+            height: 350px;
+            background: #fff;
+            transform: rotate(-15deg);
+            border-radius: 20px;
+            z-index: 10;
+        }
+
+        .formLetter .heartLetter {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #FFEBEB;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .heartLetter .heartLetterItem {
+            position: relative;
+            width: 10px;
+            height: 10px;
+            transform: rotate(45deg);
+            background: #FF6666;
+        }
+
+        .heartLetter:first-child {
+            right: 5px;
+            top: 10px;
+        }
+
+        .heartLetter:nth-child(2) {
+            left: 5px;
+            bottom: 10px;
+        }
+
+        .heartLetterItem::before,
+        .heartLetterItem::after {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: inherit;
+        }
+
+        .heartLetterItem::before {
+            top: -50%;
+        }
+
+        .heartLetterItem::after {
+            left: -50%;
+        }
+
+        .giftbox {
+            position: relative;
+            width: 40%;
+            height: 100%;
+        }
+
+        .giftbox .img {
+            position: absolute;
+            width: 160px;
+            bottom: -10px;
+            left: 0px;
+            z-index: 100;
+        }
+
+        .giftbox img {
+            width: 100%;
+        }
+
+        .textLetter {
+            width: 100%;
+            flex-direction: column;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            user-select: none;
+        }
+
+        .textLetter h2 {
+            font-size: 30px;
+            font-weight: 700px;
+            font-family: 'Dancing Script', cursive; /* Giữ nguyên như ban đầu */
+        }
+
+        .textLetter .contentLetter {
+            font-size: 19px;
+            text-align: center;
+            padding: 0px 30px;
+            margin-top: 10px;
+            font-family: 'Dancing Script', cursive; /* Giữ nguyên như ban đầu */
+            position: initial;
+        }
+
+        .fa-xmark {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 25px;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .heartAnimation {
+            position: absolute;
+            width: 150px;
+            bottom: 0;
+        }
+
+        .heartAnimation img {
+            width: 100%;
+        }
+
+        .mewmew1, .mewmew2 {
+            position: absolute;
+            width: 90px;
+        }
+
+        .mewmew1 {
+            bottom: 0;
+            left: 0;
+        }
+
+        .mewmew2 {
+            bottom: 0;
+            right: 0;
+        }
+
+        .mewmew1 img, .mewmew2 img {
+            width: 100%;
+        }
+
+        .signature {
+            position: absolute;
+            bottom: 10px;
+            right: 90px;
+            font-weight: 700px;
+            font-family: 'Dancing Scrip', cursive; 
+            font-size: 20px;
+            color: #FF6666;
+            font-style: italic;
+            text-align: right;
+            z-index: 5;
+        }
+    </style>
+</head>
+
+<body>
+    <svg id="theSvg" viewBox="-120 -30 240 180" enable-background="new 0 0 174 148" xml:space="preserve">
+        <defs>
+            <filter id="f" filterUnits="userSpaceOnUse" x="-120" y="-30" width="120%" height="120%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blur"></feGaussianBlur>
+                <feOffset in="blur" dx="3" dy="5" result="shadow"></feOffset>
+                <feFlood flood-color="rgba(3,0,0,1)" result="color" />
+                <feComposite in="color" in2="shadow" operator="in" />
+                <feComposite in="SourceGraphic" />
+            </filter>
+            <path id="shape" d="M0, 21.054 
+       C0, 21.054 24.618, -15.165 60.750, 8.554 
+       C93.249, 29.888 57.749, 96.888 0, 117.388
+       C-57.749, 96.888  -93.249, 29.888 -60.750, 8.554
+       C-24.618, -15.165  -0, 21.054 -0, 21.054z    
+    " />
+            <path id="partialPath" />
+        </defs>
+        <text dy="-2">
+            <textPath style="font-family: fantasy;" xlink:href="#partialPath" startOffset="12">
+                🌹Chúc Mừng Ngày 
+                🌹.........................................................................................................................................🌹Phụ 
+                Nữ Việt Nam 20/10!🌹
+            </textPath>
+        </text>
+        <use id="useThePath" xlink:href="#partialPath" stroke="white" stroke-width=".5" stroke-opacity=".5" fill="none"
+            style="display:none;" />
+    </svg>
+
+    <div id="castle">
+        <div class="letter">
+            <div class="valentines">
+                <div class="envelope"></div>
+                <div class="front"></div>
+                <div class="card">
+                    <div class="text">Happy</br> Women's</br> Day!</div>
+                    <div class="heart"></div>
+                </div>
+                <div class="hearts">
+                    <div class="one"></div>
+                    <div class="two"></div>
+                    <div class="three"></div>
+                    <div class="four"></div>
+                    <div class="five"></div>
+                </div>
+            </div>
+            <div class="shadow"></div>
+        </div>
+    </div>
+
+    <div class="wrapperLetterForm" style="display: none;">
+        <div class="boxLetter">
+            <i class="fa-solid fa-xmark"></i>
+            <div class="formLetter">
+                <div class="heartLetter">
+                    <div class="heartLetterItem"></div>
+                </div>
+                <div class="heartLetter">
+                    <div class="heartLetterItem"></div>
+                </div>
+                <div class="wrapperLetter">
+                    <div class="giftbox">
+                        <div class="img">
+                            <img src="./image/giftbox.png" alt="">
+                        </div>
+                    </div>
+                    <div class="textLetter">
+                        <h2></h2>
+                        <p class="contentLetter"></p>
+                        <div class="heartAnimation">
+                            <img src="./image/heartAnimation.gif" alt="">
+                        </div>
+                    </div>
+                    <div class="mewmew1">
+                        <img src="./image/mewmew.gif" alt="">
+                    </div>
+                    <div class="mewmew2">
+                        <img src="./image/mewmew.gif" alt="">
+                    </div>
+                    <!-- Thêm chữ ký ở đây -->
+                    <div class="signature"><br>gửi em</div>
+                </div>
+            </div>
+            <div class="before"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+    <script>
+        let rid = null;
+        const SVG_NS = "http://www.w3.org/2000/svg";
+        const pathlength = shape.getTotalLength();
+        let t = 0;
+        let lengthAtT = pathlength * t;
+        let d = shape.getAttribute("d");
+        let n = d.match(/C/gi).length;
+        let pos = 0;
+
+        class subPath {
+            constructor(d) {
+                this.d = d;
+                this.get_PointsRy();
+                this.previous = subpaths.length > 0 ? subpaths[subpaths.length - 1] : null;
+                this.measurePath();
+                this.get_M_Point();
+                this.lastCubicBezier;
+                this.get_lastCubicBezier();
+            }
+
+            get_PointsRy() {
+                this.pointsRy = [];
+                let temp = this.d.split(/[A-Z,a-z\s,]/).filter(v => v);
+                temp.map(item => {
+                    this.pointsRy.push(parseFloat(item));
+                });
+            }
+
+            measurePath() {
+                let path = document.createElementNS(SVG_NS, "path");
+                path.setAttributeNS(null, "d", this.d);
+                this.pathLength = path.getTotalLength();
+            }
+
+            get_M_Point() {
+                if (this.previous) {
+                    let p = this.previous.pointsRy;
+                    let l = p.length;
+                    this.M_point = [p[l - 2], p[l - 1]];
+                } else {
+                    let p = this.pointsRy;
+                    this.M_point = [p[0], p[1]];
+                }
+            }
+
+            get_lastCubicBezier() {
+                let lastIndexOfC = this.d.lastIndexOf("C");
+                let temp = this.d.substring(lastIndexOfC + 1).split(/[\s,]/).filter(v => v);
+                let _temp = [];
+                temp.map(item => {
+                    _temp.push(parseFloat(item));
+                });
+                this.lastCubicBezier = [this.M_point];
+                for (let i = 0; i < _temp.length; i += 2) {
+                    this.lastCubicBezier.push(_temp.slice(i, i + 2));
+                }
+            }
+        }
+
+        let subpaths = [];
+        for (let i = 0; i < n; i++) {
+            let newpos = d.indexOf("C", pos + 1);
+            if (i > 0) {
+                let sPath = new subPath(d.substring(0, newpos));
+                subpaths.push(sPath);
+            }
+            pos = newpos;
+        }
+        subpaths.push(new subPath(d));
+
+        let index;
+        for (index = 0; index < subpaths.length; index++) {
+            if (subpaths[index].pathLength >= lengthAtT) {
+                break;
+            }
+        }
+
+        function get_T(t, index) {
+            let T;
+            lengthAtT = pathlength * t;
+            if (index > 0) {
+                T = (lengthAtT - subpaths[index].previous.pathLength) / (subpaths[index].pathLength - subpaths[index].previous.pathLength);
+            } else {
+                T = lengthAtT / subpaths[index].pathLength;
+            }
+            return T;
+        }
+
+        let T = get_T(t, index);
+        let newPoints = getBezierPoints(T, subpaths[index].lastCubicBezier);
+        drawCBezier(newPoints, partialPath, index);
+
+        function getBezierPoints(t, points) {
+            let helperPoints = [];
+            for (let i = 1; i < 4; i++) {
+                let p = lerp(points[i - 1], points[i], t);
+                helperPoints.push(p);
+            }
+            helperPoints.push(lerp(helperPoints[0], helperPoints[1], t));
+            helperPoints.push(lerp(helperPoints[1], helperPoints[2], t));
+            helperPoints.push(lerp(helperPoints[3], helperPoints[4], t));
+            let firstBezier = [points[0], helperPoints[0], helperPoints[3], helperPoints[5]];
+            return firstBezier;
+        }
+
+        function lerp(A, B, t) {
+            let ry = [(B[0] - A[0]) * t + A[0], (B[1] - A[1]) * t + A[1]];
+            return ry;
+        }
+
+        function drawCBezier(points, path, index) {
+            let d;
+            if (index > 0) {
+                d = subpaths[index].previous.d;
+            } else {
+                d = `M${points[0][0]},${points[0][1]} C`;
+            }
+            for (let i = 1; i < 4; i++) {
+                d += ` ${points[i][0]},${points[i][1]} `;
+            }
+            partialPath.setAttributeNS(null, "d", d);
+        }
+        document.querySelector("#theSvg").style.display = "inherit";
+        rid = window.requestAnimationFrame(Typing);
+        function Typing() {
+            rid = window.requestAnimationFrame(Typing);
+            if (t >= 1) {
+                window.cancelAnimationFrame(rid);
+                rid = null;
+            } else {
+                t += 0.0025;
+            }
+            lengthAtT = pathlength * t;
+            for (index = 0; index < subpaths.length; index++) {
+                if (subpaths[index].pathLength >= lengthAtT) {
+                    break;
+                }
+            }
+            T = get_T(t, index);
+            newPoints = getBezierPoints(T, subpaths[index].lastCubicBezier);
+            drawCBezier(newPoints, partialPath, index);
+        }
+
+        let indexText = 0;
+        let textLetter = document.querySelector('.textLetter h2');
+        const textLetterH2 = "Hello cô giáo :)";
+        let timoutTextLetter;
+
+        function textCharLetter() {
+            if (indexText < textLetterH2.length) {
+                textLetter.textContent += textLetterH2[indexText];
+                indexText++;
+                setTimeout(textCharLetter, 500);
+            } else {
+                clearInterval(timoutTextLetter);
+                setTimeout(() => {
+                    funcTimeoutLetterContent();
+                }, 500);
+            }
+        }
+
+        function funcTimeoutLetter() {
+            indexText = 0;
+            textLetter.textContent = '';
+            clearInterval(timoutTextLetter);
+            timoutTextLetter = setInterval(() => {
+                textCharLetter();
+            }, 100);
+        }
+
+        let indexTextContent = 0;
+        let textLetterContent = document.querySelector('.contentLetter');
+        const textLetterP = `Tuy hơi sớm nhưng chắc anh là người đầu tiên rồi nhỉ. Anh chúc em luôn vui vẻ, hạnh phúc, không cần xinh nữa vì anh thấy như thế đủ rồi :)))). Sóng gió, buồn thế thôi cố gắng cười nhiều lên vì khi em cười là anh cũng thấy vui theo :)))
+Dù có thế nào đi nữa anh vẫn thật lòng chúc em có sự lựa chọn đúng đắn cho riêng mình. 
+À món quà này không biết em thích không nhưng anh nghĩ em hợp với nó đấy- Zai khó tính :)`;
+        let timoutTextLetterContent;
+        function textCharLetterContent() {
+            if (indexTextContent < textLetterP.length) {
+                textLetterContent.textContent += textLetterP[indexTextContent];
+                indexTextContent++;
+                setTimeout(textCharLetterContent, 2500);
+            } else {
+                clearInterval(timoutTextLetterContent);
+            }
+        }
+
+        function funcTimeoutLetterContent() {
+            indexTextContent = 0;
+            textLetterContent.textContent = '';
+            clearInterval(timoutTextLetterContent);
+            timoutTextLetterContent = setInterval(() => {
+                textCharLetterContent();
+            }, 100);
+        }
+
+        $(document).ready(function () {
+            const bgm = document.getElementById('bgm');
+            $('.valentines').mouseenter(function () {
+                $('.card').stop().animate({
+                    top: '-90px'
+                }, 'slow');
+            }).mouseleave(function () {
+                $('.card').stop().animate({
+                    top: 0
+                }, 'slow');
+            });
+
+            $('.card').click(function () {
+                $('.wrapperLetterForm').fadeIn();
+                funcTimeoutLetter();
+                if (bgm) {
+                    bgm.volume = 0.6;
+                    bgm.play().catch(() => {});
+                }
+            });
+
+            $('.fa-xmark').click(function () {
+                $('.wrapperLetterForm').css('display', 'none');
+                if (bgm) {
+                    bgm.pause();
+                    bgm.currentTime = 0;
+                }
+            });
+        });
+
+        const head = document.getElementsByTagName('head')[0];
+        let animationId = 1;
+
+        function CreateMagicDust(x1, x2, y1, y2, sizeRatio, fallingTime, animationDelay, node = 'main') {
+            let dust = document.createElement('span');
+            let animation = document.createElement('style');
+            animation.innerHTML = `\
+      @keyframes blink${animationId}{\
+          0% {\
+              top: ${y1}px;\
+              left: ${x1}px;\
+              width: ${2 * sizeRatio}px;\
+              height: ${2 * sizeRatio}px;\
+              opacity: .4\
+          }\
+          20% {\
+              width: ${4 * sizeRatio}px;\
+              height: ${4 * sizeRatio}px;\
+              opacity: .8\
+          }\
+          35% {\
+              width: ${2 * sizeRatio}px;\
+              height: ${2 * sizeRatio}px;\
+              opacity: .5\
+          }\
+          55% {\
+              width: ${3 * sizeRatio}px;\
+              height: ${3 * sizeRatio}px;\
+              opacity: .7\
+          }\
+          80% {\
+              width: ${sizeRatio}px;\
+              height: ${sizeRatio}px;\
+              opacity: .3\
+          }\
+          100% {\
+              top: ${y2}px;\
+              left: ${x2}px;\
+              width: 0px;\
+              height: 0px;\
+              opacity: .1\
+          }}`;
+            head.appendChild(animation);
+            dust.classList.add('dustDef');
+            dust.setAttribute('style', `animation: blink${animationId++} ${fallingTime}s cubic-bezier(.71, .11, .68, .83) infinite ${animationDelay}s`);
+            document.getElementById(node).appendChild(dust);
+        }
+
+        [[130, 132, 150, 152, .15, 2.5, .1, 'sub'],
+        [65, 63, 300, 299, .5, 2, .2, 'sub'],
+        [70, 70, 150, 150, .45, 2, .5],
+        [75, 78, 160, 170, .6, 2, 1],
+        [80, 82, 160, 180, .6, 1, .4],
+        [85, 100, 160, 170, .5, 2, .5],
+        [125, 110, 170, 180, .25, 3, 1.5],
+        [90, 90, 115, 115, .4, 2, 2],
+        [93, 95, 200, 200, .4, 3, 1.5],
+        [100, 100, 145, 155, .45, 1, .5],
+        [100, 90, 170, 230, .35, 2, .75],
+        [100, 102, 115, 112, .35, 3, .25],
+        [100, 95, 170, 200, .55, 1.5, .75],
+        [100, 97, 150, 190, .7, 2, 1.5],
+        [105, 100, 160, 180, .5, 1.5, .725],
+        [125, 125, 180, 190, .25, 1, .725],
+        [130, 130, 135, 135, .45, 3, 1.5],
+        [135, 132, 170, 190, .25, 2.5, .75],
+        [135, 132, 320, 315, .2, 5, .3, 'sub']
+        ].forEach((o) => CreateMagicDust(...o));
+    </script>
+    <audio id="bgm" src="./mucsic/music.mp3" preload="auto" loop></audio>
+</body>
+
+</html>

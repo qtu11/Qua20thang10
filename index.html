@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Hộp quà mở nắp</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #fae1dd;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      transition: opacity 0.3s ease;
+      touch-action: manipulation;
+    }
+
+    body.fade-out {
+      opacity: 0;
+    }
+
+    .click-area {
+      position: fixed;
+      inset: 0; 
+      z-index: 50; 
+      cursor: pointer;
+      background: transparent;
+      touch-action: manipulation;
+    }
+
+    .gift-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      max-width: 360px;
+      padding: 8px;
+      margin-top: clamp(10vh, 15vw, 100px);
+      z-index: 1;
+    }
+
+    .gift-container {
+      position: relative;
+      perspective: 1200px;
+      animation: gentleShake 1.5s ease-in-out infinite;
+      user-select: none;
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .open .gift-container {
+      animation: none;
+    }
+
+    @keyframes gentleShake {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    :root {
+      --hop-width: min(60vw, 240px);
+      --hop-height: min(42vw, 160px);
+      --nap-width: min(68vw, 270px);
+      --nap-height: min(26vw, 100px);
+    }
+
+    .gift-body {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: var(--hop-width);
+      height: var(--hop-height);
+      transform: translateX(-50%) translateY(0);
+      z-index: 1;
+      transition: transform 0.3s ease 0.5s;
+    }
+
+    .open .gift-body {
+      transform: translateX(-50%) translateY(min(8vw, 30px));
+    }
+
+    .gift-lid {
+      position: absolute;
+      left: 50%;
+      width: var(--nap-width);
+      height: var(--nap-height);
+      bottom: calc(var(--hop-height) - min(3vw, 12px));
+      transform: translateX(-50%) translateY(0) scale(1);
+      transform-origin: center;
+      transition: opacity 0.3s ease 0.3s;
+      z-index: 2;
+      filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+    }
+
+    .open .gift-lid {
+      animation: liftLid 0.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes liftLid {
+      0% {
+        transform: translateX(-50%) translateY(0) scale(1);
+        bottom: calc(var(--hop-height) - min(3vw, 12px));
+      }
+      50% {
+        transform: translateX(-50%) translateY(-10px) scale(1.01);
+        bottom: calc(var(--hop-height) - min(3vw, 12px) + 10px);
+      }
+      100% {
+        transform: translateX(-50%) translateY(-10px) scale(1.01);
+        bottom: calc(var(--hop-height) - min(3vw, 12px) + 10px);
+      }
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: radial-gradient(circle, #fff 30%, #ffd700 70%, transparent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 3;
+      animation: sparkleBurst 0.5s ease-out forwards;
+    }
+
+    @keyframes sparkleBurst {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(var(--dx) * 1px), calc(var(--dy) * 1px)) scale(0.2) rotate(360deg);
+      }
+    }
+
+    .hint-text {
+      margin-top: clamp(12px, 4vw, 20px); /* Chữ ngay dưới hộp quà */
+      font-size: clamp(0.75rem, 4vw, 0.95rem); /* Tối ưu cho điện thoại */
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #d6336c;
+      text-align: center;
+      font-weight: 600;
+      animation: blink 1.5s infinite;
+      user-select: none;
+      line-height: 1.3;
+      padding: 0 8px;
+      z-index: 1;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Tối ưu cho điện thoại dọc */
+    @media (max-width: 480px) {
+      .gift-wrapper {
+        max-width: 320px;
+        margin-top: clamp(8vh, 12vw, 80px);
+        padding: 6px;
+      }
+      
+      .gift-container {
+        max-width: 260px;
+      }
+      
+      :root {
+        --hop-width: min(65vw, 220px);
+        --hop-height: min(45vw, 150px);
+        --nap-width: min(72vw, 250px);
+        --nap-height: min(28vw, 95px);
+      }
+      
+      .hint-text {
+        font-size: clamp(0.7rem, 4.5vw, 0.9rem);
+        margin-top: clamp(10px, 3.5vw, 18px);
+        padding: 0 12px;
+      }
+    }
+
+    /* Tối ưu cho màn hình rất nhỏ */
+    @media (max-height: 500px) or (max-width: 360px) {
+      .gift-wrapper {
+        max-width: 280px;
+        margin-top: clamp(6vh, 10vw, 60px);
+        padding: 4px;
+      }
+      
+      .gift-container {
+        max-width: 240px;
+      }
+      
+      :root {
+        --hop-width: min(70vw, 200px);
+        --hop-height: min(48vw, 140px);
+        --nap-width: min(78vw, 230px);
+        --nap-height: min(30vw, 85px);
+      }
+      
+      .hint-text {
+        font-size: clamp(0.65rem, 5vw, 0.85rem);
+        margin-top: clamp(8px, 3vw, 15px);
+        line-height: 1.2;
+      }
+    }
+
+   
+    @media (orientation: landscape) {
+      body {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+      }
+      
+      .gift-wrapper {
+        max-width: 45vw;
+        margin-top: 0;
+        margin-right: 8px;
+        padding: 6px;
+      }
+      
+      .hint-text {
+        margin-top: 0;
+        max-width: 45vw;
+        font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+        writing-mode: vertical-rl; 
+        text-orientation: mixed;
+      }
+    }
+
+    /* Tối ưu cho máy tính */
+    @media (min-width: 768px) {
+      .gift-wrapper {
+        max-width: 400px;
+        margin-top: clamp(12vh, 20vw, 120px);
+      }
+      
+      .gift-container {
+        max-width: 300px;
+      }
+      
+      .hint-text {
+        font-size: clamp(1rem, 1.5vw, 1.2rem);
+        margin-top: clamp(15px, 2vh, 25px);
+        writing-mode: horizontal-tb; /* Chữ ngang trên máy tính */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="click-area" id="giftClickArea"></div>
+
+  <div class="gift-wrapper">
+    <div class="gift-container">
+      <img src="./image/hop.png" alt="Thân hộp quà" class="gift-body">
+      <img src="./image/nap.png" alt="Nắp hộp quà" class="gift-lid">
+    </div>
+    <div class="hint-text">🎁 Bấm vào hộp quà để mở 🎁</div>
+  </div>
+
+  <script>
+    const clickArea = document.getElementById('giftClickArea');
+    const container = document.querySelector('.gift-container');
+    const body = document.body;
+    let isAnimating = false;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.style.touchAction = 'manipulation';
+    });
+
+    clickArea.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      if (isAnimating) return;
+      isAnimating = true;
+
+      const isOpen = container.classList.contains('open');
+      if (!isOpen) {
+        openGift();
+      }
+    });
+
+    function openGift() {
+      container.classList.add('open');
+      createSparkles();
+
+      setTimeout(() => {
+        body.classList.add('fade-out');
+        setTimeout(() => {
+          goToLetterPage();
+        }, 250);
+      }, 700);
+    }
+
+    function goToLetterPage() {
+      try {
+        window.location.href = 'thu.html';
+      } catch (err) {
+        console.error('Lỗi chuyển trang:', err);
+        alert('Không thể chuyển đến trang thu.html. Hãy kiểm tra lại tệp!');
+        body.classList.remove('fade-out');
+        container.classList.remove('open');
+        isAnimating = false;
+      }
+    }
+
+    function createSparkles() {
+      const sparkleCount = window.innerWidth <= 360 ? 4 : 6;
+      for (let i = 0; i < sparkleCount; i++) {
+        const s = document.createElement('div');
+        s.className = 'sparkle';
+        const dx = (Math.random() - 0.5) * 35;
+        const dy = (Math.random() - 0.5) * 35;
+        s.style.setProperty('--dx', dx);
+        s.style.setProperty('--dy', dy);
+        s.style.left = `${40 + Math.random() * 20}%`;
+        s.style.top = `${20 + Math.random() * 30}%`;
+        s.style.animationDelay = `${Math.random() * 0.05}s`;
+        container.appendChild(s);
+        setTimeout(() => s.remove(), 500);
+      }
+    }
+  </script>
+</body>
+</html>
